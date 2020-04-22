@@ -27,7 +27,7 @@ public class ShareController {
             + "<body>\n"
             + "  \n"
             + "<script type=\"text/javascript\">\n"
-            + "\twindow.location.href=\"https://www.chendahai.cn/\";\n"
+            + "\twindow.location.href=\"https://www.cnblogs.com/chywx/\";\n"
             + "</script>"
             + "</body>\n"
             + "</html>";
