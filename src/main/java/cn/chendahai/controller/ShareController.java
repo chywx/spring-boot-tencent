@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShareController {
 
     @RequestMapping("/share")
-    public String shareWin(String meta) {
+    public String share(String meta) {
 
         return "<!DOCTYPE html>\n"
             + "<html lang=\"en\">\n"
@@ -27,7 +27,7 @@ public class ShareController {
             + "<body>\n"
             + "  \n"
             + "<script type=\"text/javascript\">\n"
-            + "\twindow.location.href=\"https://www.bangbet.com/\";\n"
+            + "\twindow.location.href=\"https://www.chendahai.cn/\";\n"
             + "</script>"
             + "</body>\n"
             + "</html>";
