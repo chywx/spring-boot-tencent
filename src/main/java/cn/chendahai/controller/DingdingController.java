@@ -20,8 +20,8 @@ public class DingdingController {
     private DingdingService dingdingService;
 
     @GetMapping("/send")
-    public void sendMsg() {
-        dingdingService.sendByTokenAndPhone("chy:" + System.currentTimeMillis(), "token", "13121939122");
+    public void sendMsg(String message) {
+        dingdingService.sendByTokenAndPhone(System.currentTimeMillis() + " " + message, "token", "13121939122");
     }
 
 }

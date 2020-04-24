@@ -1,6 +1,6 @@
 package cn.chendahai.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ShareController {
 
-    @RequestMapping("/share")
+    @GetMapping("/share")
     public String share(String meta) {
 
         return "<!DOCTYPE html>\n"

@@ -24,12 +24,45 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/cn.chendahai/dingding-spring-boot-starter -->
+    <!-- 钉钉依赖 -->
     <dependency>
       <groupId>cn.chendahai</groupId>
       <artifactId>dingding-spring-boot-starter</artifactId>
       <version>2.0.3</version>
     </dependency>
+
+
+    <!-- swagger依赖 -->
+    <dependency>
+      <groupId>com.github.xiaoymin</groupId>
+      <artifactId>knife4j-spring-boot-starter</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+
+    <!-- mybatis依赖 -->
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>2.1.2</version>
+    </dependency>
+
+    <!--mysql数据库驱动-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.19</version>
+    </dependency>
+
+    <!-- lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.12</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+
 
 
     <dependency>
