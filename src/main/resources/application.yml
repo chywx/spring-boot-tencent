@@ -1,7 +1,5 @@
 server:
   port: 5005
-  servlet:
-    context-path: /ocean
 
 
 spring:
