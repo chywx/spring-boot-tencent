@@ -19,9 +19,8 @@ public class RegionServiceImpl implements RegionService {
     @Autowired
     private RegionsDao regionsDao;
 
-
     @Override
-    public List<Region> queryProvinceList() {
-        return regionsDao.queryProvinceList();
+    public List<Region> queryList(Integer pid) {
+        return regionsDao.queryList(pid);
     }
 }

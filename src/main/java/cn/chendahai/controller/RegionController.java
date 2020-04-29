@@ -25,9 +25,12 @@ public class RegionController {
     @Autowired
     private RegionService regionService;
 
-    @GetMapping("provinceList")
-    public JsonResult provinceList() {
-        List<Region> regions = regionService.queryProvinceList();
+    @GetMapping("regionList")
+    public JsonResult regionList(Integer pid) {
+        if (pid == null) {
+            pid = 0;
+        }
+        List<Region> regions = regionService.queryList(pid);
         return JsonResultFactory.success(regions);
     }
 

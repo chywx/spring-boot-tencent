@@ -2,6 +2,7 @@ package cn.chendahai.dao;
 
 import cn.chendahai.entity.Region;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -16,11 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface RegionsDao {
 
-    /**
-     * 省列表
-     * @return
-     */
-    @Select("SELECT * FROM region where parent_id = 0")
-    List<Region> queryProvinceList();
 
+    @Select("SELECT * FROM region where parent_id = #{pid}")
+    List<Region> queryList(@Param("pid") Integer pid);
 }
