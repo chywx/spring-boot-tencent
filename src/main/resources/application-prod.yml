@@ -1,6 +1,8 @@
 server:
   port: 5005
 
+upload:
+  path: /opt/file
 
 spring:
   datasource:

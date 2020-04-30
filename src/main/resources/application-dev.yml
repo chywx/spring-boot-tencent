@@ -1,6 +1,8 @@
 server:
   port: 5005
 
+upload:
+  path: D:/file/tencent
 
 spring:
   datasource:
