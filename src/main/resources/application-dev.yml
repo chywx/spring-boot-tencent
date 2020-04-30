@@ -10,6 +10,11 @@ spring:
     username: root
     password: cloud123456
     driverClassName: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      # 1024表示1kb
+      max-file-size: 10485760
+      max-request-size: 10485760
 
 
 mybatis:
