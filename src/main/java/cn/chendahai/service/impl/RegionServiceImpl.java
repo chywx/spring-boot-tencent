@@ -23,4 +23,14 @@ public class RegionServiceImpl implements RegionService {
     public List<Region> queryList(Integer pid) {
         return regionsDao.queryList(pid);
     }
+
+    @Override
+    public List<Region> getAll() {
+        return regionsDao.getAll();
+    }
+
+    @Override
+    public int updatePinYinById(Integer id, String py) {
+        return regionsDao.updatePinYinById(id, py);
+    }
 }

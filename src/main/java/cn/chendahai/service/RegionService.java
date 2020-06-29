@@ -12,4 +12,8 @@ import java.util.List;
 public interface RegionService {
 
     List<Region> queryList(Integer pid);
+
+    List<Region> getAll();
+
+    int updatePinYinById(Integer id, String py);
 }
