@@ -1,8 +1,11 @@
 package cn.chendahai.controller;
 
 import io.swagger.annotations.Api;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,6 +17,59 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "分享第三方")
 public class ShareController {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
+    @RequestMapping(value = "/share/new", produces = "text/html;charset=utf-8")
+    public String shareWin(String meta) {
+        System.out.println("share number is " + meta);
+        String[] split = meta.split(",");
+        String metaHtml = "";
+        for (int i = 0; i < split.length; i++) {
+            metaHtml += "<meta property=\"" + split[i] + "\" name=\"" + split[i] + "\" content=\"" + split[i + 1] + "\"/>\n";
+            i++;
+        }
+        String retHtml = "<!DOCTYPE html>\n"
+            + "<html lang=\"en\">\n"
+            + "<head>\n"
+            + metaHtml
+            + "</head>\n"
+            + "<body>\n"
+            + "<script type=\"text/javascript\">\n"
+            + "\twindow.location.href=\"https://www.bangbet.com/\";\n"
+            + "</script>"
+            + "</body>\n"
+            + "</html>";
+        System.out.println(retHtml);
+        return retHtml;
+
+    }
+
+
+    @RequestMapping(value = "/share/{number}", produces = "text/html;charset=utf-8")
+    public String shareWin(String[] property, String[] content, @PathVariable("number") String number) {
+        System.out.println("share number is " + number);
+        String metaHtml = "";
+        for (int i = 0; i < property.length; i++) {
+            metaHtml += "<meta property=\"" + property[i] + "\" name=\"" + property[i] + "\" content=\"" + content[i] + "\"/>\n";
+        }
+        String retHtml = "<!DOCTYPE html>\n"
+            + "<html lang=\"en\">\n"
+            + "<head>\n"
+            + "<meta property=\"og:title\" name=\"og:title\" content=\"title666\"/>\n"
+            + metaHtml
+            + "</head>\n"
+            + "<body>\n"
+            + "<script type=\"text/javascript\">\n"
+            + "\twindow.location.href=\"https://www.bangbet.com/\";\n"
+            + "</script>"
+            + "</body>\n"
+            + "</html>";
+        System.out.println(retHtml);
+        return retHtml;
+
+    }
+
 
     @GetMapping("/share")
     public String share(String meta) {
