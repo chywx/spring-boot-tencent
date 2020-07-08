@@ -1,10 +1,11 @@
 package cn.chendahai.controller;
 
 import io.swagger.annotations.Api;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "分享第三方")
 public class ShareController {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        String decode = URLDecoder.decode(
+            "http%3A%2F%2Fjava.chendahai.cn%3A5005%2Fshare%2Fnew%3Fmeta%3Dtwitter%3Aurl%2Chttp%3A%2F%2Fgg.chendahai.cn%2Fstatic%2Fshare%2Ft1.html%2Ctwitter%3Atitle%2Cthis%20is%20new%20title%2Ctwitter%3Adescription%2Cthis%20is%20new%20desc%2Ctwitter%3Asite%2Chttp%3A%2F%2Fgg.chendahai.cn%2Fstatic%2Fshare%2Ft1.html%2Ctwitter%3Acard%2Csummary_large_image%2Ctwitter%3Aimage%2Chttp%3A%2F%2Fgg.chendahai.cn%2Fstatic%2Fimage%2Fapple.jpg",
+            "UTF-8");
+        System.out.println(decode);
+    }
 
+    /**
+     * facebook和twitter通用的动态分享接口
+     *
+     * @param meta k,v,k,v 类型的字符串
+     * @return html页面
+     */
     @RequestMapping(value = "/share/new", produces = "text/html;charset=utf-8")
-    public String shareWin(String meta) {
-        System.out.println("share number is " + meta);
+    public String shareWin(String meta) throws UnsupportedEncodingException {
+        // twitter的url需要进行url解码处理
+        meta = URLDecoder.decode(meta, "UTF-8");
         String[] split = meta.split(",");
         String metaHtml = "";
         for (int i = 0; i < split.length; i++) {
@@ -36,38 +49,12 @@ public class ShareController {
             + "</head>\n"
             + "<body>\n"
             + "<script type=\"text/javascript\">\n"
-            + "\twindow.location.href=\"https://www.bangbet.com/\";\n"
+            + "\twindow.location.href=\"http://java.chendahai.cn/\";\n"
             + "</script>"
             + "</body>\n"
             + "</html>";
         System.out.println(retHtml);
         return retHtml;
-
-    }
-
-
-    @RequestMapping(value = "/share/{number}", produces = "text/html;charset=utf-8")
-    public String shareWin(String[] property, String[] content, @PathVariable("number") String number) {
-        System.out.println("share number is " + number);
-        String metaHtml = "";
-        for (int i = 0; i < property.length; i++) {
-            metaHtml += "<meta property=\"" + property[i] + "\" name=\"" + property[i] + "\" content=\"" + content[i] + "\"/>\n";
-        }
-        String retHtml = "<!DOCTYPE html>\n"
-            + "<html lang=\"en\">\n"
-            + "<head>\n"
-            + "<meta property=\"og:title\" name=\"og:title\" content=\"title666\"/>\n"
-            + metaHtml
-            + "</head>\n"
-            + "<body>\n"
-            + "<script type=\"text/javascript\">\n"
-            + "\twindow.location.href=\"https://www.bangbet.com/\";\n"
-            + "</script>"
-            + "</body>\n"
-            + "</html>";
-        System.out.println(retHtml);
-        return retHtml;
-
     }
 
 
@@ -100,13 +87,12 @@ public class ShareController {
             + "<html lang=\"en\">\n"
             + "<head>\n"
             + "</head>\n"
-            + "  <meta property=\"twitter:url\" content=\"https://www.bangbet.com/\"/>\n"
-            + "  <meta property=\"og:url\" content=\"https://www.bangbet.com/\"/>\n"
-            + "  <meta name=\"twitter:site\" content=\"https://www.bangbet.com/\">\n"
-            + "  <meta name=\"twitter:title\" content=\"This is my plan,let's play together\"/>\n"
-            + "  <meta name=\"twitter:description\" content=\"This is my plan,let's play together\"/>\n"
-            + "  <meta name=\"twitter:card\" content=\"summary_large_image\"/>\n"
-            + "  <meta name=\"twitter:image\" content=\"https://www.bangbet.com/images/activity/bet-share.jpeg\"/>"
+            + "<meta property=\"twitter:url\" content=\"http://gg.chendahai.cn/static/share/t1.html\"/>\n"
+            + "<meta name=\"twitter:title\" content=\"This aaa title\"/>\n"
+            + "<meta name=\"twitter:description\" content=\"This aaa desc\"/>\n"
+            + "<meta name=\"twitter:site\" content=\"http://gg.chendahai.cn/static/share/t1.html\">\n"
+            + "<meta name=\"twitter:card\" content=\"summary_large_image\"/>\n"
+            + "<meta name=\"twitter:image\" content=\"http://gg.chendahai.cn/static/image/lbxx.jpg\"/>\n"
             + "<body>\n"
             + "  \n"
             + "<script type=\"text/javascript\">\n"
