@@ -32,7 +32,7 @@ public class ShareController {
      * @param meta k,v,k,v 类型的字符串
      * @return html页面
      */
-    @RequestMapping(value = "/share/new", produces = "text/html;charset=utf-8")
+    @GetMapping(value = "/share/new", produces = "text/html;charset=utf-8")
     public String shareWin(String meta) throws UnsupportedEncodingException {
         // twitter的url需要进行url解码处理
         meta = URLDecoder.decode(meta, "UTF-8");
@@ -58,6 +58,9 @@ public class ShareController {
     }
 
 
+    /**
+     * 接收meta html字符串，返回html
+     */
     @GetMapping("/share")
     public String share(String meta) {
 
@@ -80,9 +83,11 @@ public class ShareController {
 
     }
 
+    /**
+     * 不接受参数，直接返回html
+     */
     @GetMapping("/shareTwitter")
     public String shareTwitter() {
-
         return "<!DOCTYPE html>\n"
             + "<html lang=\"en\">\n"
             + "<head>\n"
@@ -102,28 +107,4 @@ public class ShareController {
             + "</html>";
 
     }
-
-//    @GetMapping("/shareTwitter")
-//    public String shareTwitterMeta(String title, String description, String image) {
-//
-//        return "<!DOCTYPE html>\n"
-//            + "<html lang=\"en\">\n"
-//            + "<head>\n"
-//            + "  <meta property=\"twitter:url\" content=\"https://www.bangbet.com/\"/>\n"
-//            + "  <meta property=\"og:url\" content=\"https://www.bangbet.com/\"/>\n"
-//            + "  <meta name=\"twitter:site\" content=\"https://www.bangbet.com/\">\n"
-//            + "  <meta name=\"twitter:title\" content=\"" + title + "\"/>\n"
-//            + "  <meta name=\"twitter:description\" content=\"" + description + "\"/>\n"
-//            + "  <meta name=\"twitter:card\" content=\"summary_large_image\"/>\n"
-//            + "  <meta name=\"twitter:image\" content=\"" + image + "\"/>"
-//            + "</head>\n"
-//            + "<body>\n"
-//            + "  \n"
-//            + "<script type=\"text/javascript\">\n"
-//            + "\twindow.location.href=\"https://www.cnblogs.com/chywx/\";\n"
-//            + "</script>"
-//            + "</body>\n"
-//            + "</html>";
-//
-//    }
 }
