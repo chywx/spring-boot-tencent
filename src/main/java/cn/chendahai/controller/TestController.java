@@ -2,8 +2,10 @@ package cn.chendahai.controller;
 
 import cn.chendahai.entity.Region;
 import cn.chendahai.service.RegionService;
+import io.micrometer.core.instrument.util.StringUtils;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -34,6 +36,28 @@ public class TestController {
         Thread.sleep(10000);
         System.out.println("t1 end");
         return "t1->ok!" + new Date();
+    }
+
+    @GetMapping("/getIp")
+    public String getIp(HttpServletRequest request) {
+
+        String ip = request.getHeader("X-Forwarded-For");
+        if (!StringUtils.isBlank(ip) && !"unKnown".equalsIgnoreCase(ip)) {
+            //多次反向代理后会有多个ip值，第一个ip才是真实ip
+            int index = ip.indexOf(",");
+            if (index != -1) {
+                return ip.substring(0, index);
+            } else {
+                return ip;
+            }
+        }
+        ip = request.getHeader("X-Real-IP");
+        if (!StringUtils.isBlank(ip) && !"unKnown".equalsIgnoreCase(ip)) {
+            return ip;
+        }
+
+        return request.getRemoteAddr();
+
     }
 
 
