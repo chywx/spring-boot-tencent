@@ -5,6 +5,8 @@ upload:
   path: D:/file/tencent
 
 spring:
+  profiles:
+    include: thymeleaf
   datasource:
     url: jdbc:mysql://152.136.130.252:3306/bet?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&allowMultiQueries=true
     username: root
