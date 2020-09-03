@@ -10,10 +10,12 @@
 <span th:text="${name}"></span><br>
 <input type="button" value="点击 ajax" onclick="add()"><br>
 <input type="button" value="点击 axios" onclick="add2()"><br>
+<input type="button" value="点击 test" onclick="test()"><br>
 <script>
   function add () {
     console.log('add')
     $.ajax({
+      // url: 'http://localhost:5566/th/add',
       url: 'http://localhost:5005/th/add',
       xhrFields: {
         withCredentials: true
@@ -33,6 +35,15 @@
       console.log('res>>>1>>>', res)
     })
 
+  }
+
+  function test() {
+      $.ajax({
+          url:'http://localhost:5005/th/hello',
+          success: function (res) {
+              console.log(res)
+          }
+      })
   }
 
 </script>

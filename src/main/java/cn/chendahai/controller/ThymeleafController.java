@@ -1,5 +1,6 @@
 package cn.chendahai.controller;
 
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 //@CrossOrigin(value = "*", allowCredentials = "true")
-@CrossOrigin(value = "*")
+//@CrossOrigin(value = "*")
 @RequestMapping("/th")
 public class ThymeleafController {
 
@@ -27,12 +28,21 @@ public class ThymeleafController {
 
     }
 
+    @RequestMapping("/hello")
+    @ResponseBody
+    public String hello() {
+        System.out.println("hello" + new Date());
+        return "hello";
+
+    }
+
     @RequestMapping("/add")
     @ResponseBody
     public String add(HttpServletRequest request, HttpServletResponse response) {
         request.getSession();
-//        response.setHeader("Access-Control-Allow-Origin", "http://localhost:63343");
-//        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:63342");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        System.out.println(new Date());
         return "hello world";
     }
 
