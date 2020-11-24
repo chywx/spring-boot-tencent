@@ -23,6 +23,7 @@ public class ThymeleafController {
 
     @RequestMapping("/test")
     public String index(Model model) {
+        System.out.println("enter test");
         model.addAttribute("name", "Dylan");
         return "test";
 

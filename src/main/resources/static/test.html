@@ -10,7 +10,7 @@
 <span th:text="${name}"></span><br>
 <input type="button" value="点击 ajax" onclick="add()"><br>
 <input type="button" value="点击 axios" onclick="add2()"><br>
-<input type="button" value="点击 test" onclick="test()"><br>
+<input type="button" value="点击 hello" onclick="hello()"><br>
 <script>
   function add () {
     console.log('add')
@@ -32,18 +32,19 @@
   function add2 () {
     axios.defaults.withCredentials = true
     axios.get('http://localhost:5005/th/add').then((res) => {
-      console.log('res>>>1>>>', res)
-    })
+      console.log('res>>>1>>>', res);
+    });
 
   }
 
-  function test() {
+  function hello() {
       $.ajax({
-          url:'http://localhost:5005/th/hello',
+          url:'http://192.168.124.123:5005/th/hello',
           success: function (res) {
               console.log(res)
           }
       })
+
   }
 
 </script>
