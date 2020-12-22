@@ -7,10 +7,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
 
 /**
  * 功能描述
@@ -18,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @author chy
  * @date 2020/7/7 0007
  */
-@Component
+//@Component
 public class MyFilter implements Filter {
 
     @Override

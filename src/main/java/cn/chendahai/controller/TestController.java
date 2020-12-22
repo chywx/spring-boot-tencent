@@ -3,8 +3,11 @@ package cn.chendahai.controller;
 import cn.chendahai.entity.Region;
 import cn.chendahai.service.RegionService;
 import io.micrometer.core.instrument.util.StringUtils;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -36,6 +39,22 @@ public class TestController {
         Thread.sleep(10000);
         System.out.println("t1 end");
         return "t1->ok!" + new Date();
+    }
+
+    @GetMapping("/getLocale")
+    public String firebase(HttpServletRequest request) {
+
+        Locale locale = request.getLocale();
+        System.out.println(locale.getCountry());
+        System.out.println(locale.getLanguage());
+        Calendar instance = Calendar.getInstance(locale);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        format.setTimeZone(instance.getTimeZone());
+        System.out.println(instance.getTimeZone().getID());
+        String result = format.format(new Date());
+        System.out.println(result);
+        String ip = getIp(request);
+        return ip + "-" + locale.getCountry() + "-" + locale.getLanguage() + "-" + instance.getTimeZone().getID() + "---" + result;
     }
 
     @GetMapping("/getIp")

@@ -2,8 +2,8 @@ package cn.chendahai.dao;
 
 import cn.chendahai.entity.Sport;
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,7 +18,6 @@ public interface SportDao {
 
     /**
      * 运动列表
-     * @return
      */
     @Select("SELECT id,name,betradar_id betradarId,seq FROM `sport`")
     List<Sport> queryList();
