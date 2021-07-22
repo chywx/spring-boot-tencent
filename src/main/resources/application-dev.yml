@@ -33,3 +33,14 @@ management:
     #开启shutdown
     shutdown:
       enabled: true
+  server:
+    port: 5555
+
+# info 配置项
+info:
+  app:
+    java:
+      source: @java.version@
+      target: @java.version@
+    encoding: UTF-8
+    version: @project.version@
