@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,6 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyFilter implements Filter {
 
+    private Logger logger = LoggerFactory.getLogger(MyFilter.class);
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -29,8 +33,8 @@ public class MyFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        System.out.println("TestFilter:" + request.getRequestURI());
-        System.out.println(new Date() + ">>>IP:" + HttpUtil.getIp(request));
+
+        logger.info("date:{}, IP:{}, URI:{}", new Date(), HttpUtil.getIp(request), request.getRequestURI());
         //执行
         filterChain.doFilter(servletRequest, servletResponse);
     }
