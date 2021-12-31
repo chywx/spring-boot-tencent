@@ -13,4 +13,8 @@ public interface SportService {
 
     List<Sport> queryList();
 
+    int updateAvatar(Integer id, String avatar);
+
+    int updateDescription(Integer id, String description);
+
 }
