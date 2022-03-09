@@ -1,5 +1,7 @@
 server:
   port: 5005
+#  servlet:
+#    context-path: /tencent
 
 upload:
   path: D:/file/tencent

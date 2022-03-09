@@ -42,6 +42,27 @@ public class TestController {
         return "t1->ok!" + new Date();
     }
 
+    /**
+     * key:aaa
+     * getRequestURI:/tencent/test/req
+     * getRequestURL:http://localhost:5005/tencent/test/req
+     * getContextPath:/tencent
+     * getServletPath:/test/req
+     * getServletContext().getContextPath:/tencent
+     * getQueryString:key=aaa
+     */
+    @GetMapping("/req")
+    public String req(HttpServletRequest request, String key) throws InterruptedException {
+        System.out.println("key:" + key);
+        System.out.println("getRequestURI:" + request.getRequestURI());
+        System.out.println("getRequestURL:" + request.getRequestURL());
+        System.out.println("getContextPath:" + request.getContextPath());
+        System.out.println("getServletPath:" + request.getServletPath());
+        System.out.println("getServletContext().getContextPath:" + request.getServletContext().getContextPath());
+        System.out.println("getQueryString:" + request.getQueryString());
+        return "req->ok!" + new Date();
+    }
+
     @GetMapping("/getLocale")
     public String firebase(HttpServletRequest request) {
 
