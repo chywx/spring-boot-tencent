@@ -12,6 +12,13 @@ import org.springframework.context.annotation.Bean;
 public class SpringBootTencentApplication {
 
     public static void main(String[] args) {
+
+        System.setProperty("http.proxyHost", "127.0.0.1");
+        System.setProperty("https.proxyHost", "127.0.0.1");
+        System.setProperty("http.proxyPort", "8888");
+        System.setProperty("https.proxyPort", "8888");
+
+
         System.out.println("main:" + Thread.currentThread().getName());
         SpringApplication.run(SpringBootTencentApplication.class, args);
     }

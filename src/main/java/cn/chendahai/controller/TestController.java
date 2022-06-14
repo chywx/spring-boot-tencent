@@ -17,6 +17,14 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +43,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("test")
 public class TestController {
 
+    public static void main(String[] args) throws InterruptedException {
+
+//        System.setProperty("http.proxyHost", "127.0.0.1");
+//        System.setProperty("https.proxyHost", "127.0.0.1");
+//        System.setProperty("http.proxyPort", "8888");
+//        System.setProperty("https.proxyPort", "8888");
+
+        // 设置代理，hostname参数是本机的IP地址，port端口号是Fiddler设置的端口号
+        HttpHost proxy = new HttpHost("127.0.0.1", 8888, "http");
+        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+        CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+
+//        CloseableHttpClient client = HttpClientBuilder.create().build();
+
+        String url = "http://java.chendahai.cn/test/getIp";
+        HttpGet get = new HttpGet(url);
+        try {
+            HttpResponse response = client.execute(get);
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity, "UTF-8");
+            System.out.println("url: " + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Thread.sleep(1000000000000L);
+    }
+
     @Autowired
     private RegionService regionService;
 
@@ -48,6 +84,12 @@ public class TestController {
     public String objInObjJson(@RequestBody Person person) {
         System.out.println(JSONObject.toJSONString(person));
         return JSONObject.toJSONString(person);
+    }
+
+    @PostMapping("/requestUrl")
+    public String objInObjJson() {
+
+        return "success:" + new Date();
     }
 
 

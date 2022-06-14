@@ -23,6 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "体彩")
 public class SportController {
 
+    public static void main(String[] args) {
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Long.MAX_VALUE);
+    }
+
     @Autowired
     private SportService sportService;
 
