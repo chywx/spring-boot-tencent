@@ -1,8 +1,10 @@
 package cn.chendahai.controller;
 
+import cn.chendahai.entity.Person;
 import cn.chendahai.entity.Region;
 import cn.chendahai.service.RegionService;
 import cn.chendahai.util.HttpUtil;
+import com.alibaba.fastjson.JSONObject;
 import io.micrometer.core.instrument.util.StringUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,7 +19,10 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -32,6 +37,19 @@ public class TestController {
 
     @Autowired
     private RegionService regionService;
+
+    @PostMapping("/objInObj")
+    public String objInObj(Person person) {
+        System.out.println(JSONObject.toJSONString(person));
+        return JSONObject.toJSONString(person);
+    }
+
+    @PostMapping("/objInObjJson")
+    public String objInObjJson(@RequestBody Person person) {
+        System.out.println(JSONObject.toJSONString(person));
+        return JSONObject.toJSONString(person);
+    }
+
 
     @GetMapping("/t1")
     public String t1() throws InterruptedException {
