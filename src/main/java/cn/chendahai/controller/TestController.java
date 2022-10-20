@@ -60,7 +60,7 @@ public class TestController {
         System.out.println("getServletPath:" + request.getServletPath());
         System.out.println("getServletContext().getContextPath:" + request.getServletContext().getContextPath());
         System.out.println("getQueryString:" + request.getQueryString());
-        return "req->ok!" + new Date();
+        return "req->ok!" + new Date() + " key: " + key;
     }
 
     @GetMapping("/getLocale")
