@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.util.StopWatch;
 
 @SpringBootApplication
@@ -27,6 +29,14 @@ public class SpringBootTencentApplication {
     @Bean
     public DingdingService dingdingService() {
         return new DingdingService();
+    }
+
+    @Bean
+    public TaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler scheduling = new ThreadPoolTaskScheduler();
+        scheduling.setPoolSize(10);
+        scheduling.initialize();
+        return scheduling;
     }
 
 
