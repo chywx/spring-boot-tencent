@@ -6,26 +6,37 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.util.StopWatch;
 
 @SpringBootApplication
 @MapperScan("cn.chendahai.dao")
 public class SpringBootTencentApplication {
 
     public static void main(String[] args) {
-
-        System.setProperty("http.proxyHost", "127.0.0.1");
-        System.setProperty("https.proxyHost", "127.0.0.1");
-        System.setProperty("http.proxyPort", "8888");
-        System.setProperty("https.proxyPort", "8888");
-
-
+        StopWatch sw = new StopWatch();
+        long startTime = System.currentTimeMillis();
+        sw.start("chy");
         System.out.println("main:" + Thread.currentThread().getName());
         SpringApplication.run(SpringBootTencentApplication.class, args);
+        sw.stop();
+        System.out.println("程序运行时间：" + sw.getLastTaskTimeMillis());
+        long endTime = System.currentTimeMillis();    //获取结束时间
+        System.out.println("程序运行时间：" + (endTime - startTime));    //输出程序运行时间
     }
 
     @Bean
     public DingdingService dingdingService() {
         return new DingdingService();
+    }
+
+    @Bean
+    public TaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler scheduling = new ThreadPoolTaskScheduler();
+        scheduling.setPoolSize(10);
+        scheduling.initialize();
+        return scheduling;
     }
 
 

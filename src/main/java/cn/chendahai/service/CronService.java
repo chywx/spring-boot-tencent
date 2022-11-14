@@ -1,19 +1,27 @@
 package cn.chendahai.service;
 
-
-import java.time.LocalDateTime;
-import org.springframework.context.annotation.Configuration;
+import cn.chendahai.util.DateUtil;
+import cn.chendahai.websocket.WebSocketServer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
-@Configuration      //1.主要用于标记配置类，兼备Component的效果。
+import java.io.IOException;
+
+/**
+ * @author: Dylan
+ * @date: 2022/11/3 18:56
+ */
 @EnableScheduling
+@Service
 public class CronService {
 
-    @Scheduled(cron = "0 22 10 * * ?")
-    private void configureTasks() {
-        System.err.println("执行静态定时任务时间: " + LocalDateTime.now());
+    @Scheduled(cron = "0/5 * * * * ?")
+    public void pushDemo() {
+        try {
+            WebSocketServer.sendInfo("定时群发→当前时间：" + DateUtil.getCurrentDateStr(DateUtil.STANDARD_FORMAT));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-
-
 }
