@@ -4,6 +4,12 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+#src/main/resources/application-hwdev.yml
+#src/main/resources/application-hwprod.yml
+#src/main/resources/application-dev.yml
+#src/main/resources/application-prod.yml
+
+
 ### STS ###
 .apt_generated
 .classpath
