@@ -2,16 +2,19 @@ package cn.chendahai.controller;
 
 import cn.chendahai.entity.Person;
 import cn.chendahai.entity.Region;
+import cn.chendahai.entity.Sport;
 import cn.chendahai.service.RegionService;
 import cn.chendahai.util.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import io.micrometer.core.instrument.util.StringUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
+
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -26,6 +29,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -100,6 +104,16 @@ public class TestController {
         Thread.sleep(10000);
         System.out.println("t1 end");
         return "t1->ok!" + new Date();
+    }
+
+    @Autowired
+    private ApplicationContext context;
+
+    @PostMapping("/getSport")
+    public Sport getSport() {
+        Sport testSport = context.getBean("testSport", Sport.class);
+        System.out.println(JSONObject.toJSONString(testSport));
+        return testSport;
     }
 
     /**
