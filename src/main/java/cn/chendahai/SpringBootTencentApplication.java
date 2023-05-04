@@ -21,9 +21,9 @@ public class SpringBootTencentApplication {
         System.out.println("main:" + Thread.currentThread().getName());
         SpringApplication.run(SpringBootTencentApplication.class, args);
         sw.stop();
-        System.out.println("程序运行时间：" + sw.getLastTaskTimeMillis());
+        System.out.println("StopWatch：程序运行时间：" + sw.getLastTaskTimeMillis());
         long endTime = System.currentTimeMillis();    //获取结束时间
-        System.out.println("程序运行时间：" + (endTime - startTime));    //输出程序运行时间
+        System.out.println("System：程序运行时间：" + (endTime - startTime));    //输出程序运行时间
     }
 
     @Bean

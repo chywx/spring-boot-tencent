@@ -53,3 +53,10 @@ info:
       target: @java.version@
     encoding: UTF-8
     version: @project.version@
+
+
+logging:
+  level:
+    root: info
+    cn.chendahai: debug
+
