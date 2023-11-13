@@ -1,0 +1,62 @@
+server:
+  port: 5005
+#  servlet:
+#    context-path: /tencent
+
+upload:
+  path: D:/file/tencent
+
+spring:
+  profiles:
+    include: thymeleaf
+  datasource:
+    url: jdbc:mysql://152.32.135.116:3306/tencent?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&allowMultiQueries=true
+    username: root
+    password: cloud123456
+    driverClassName: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      # 1024表示1kb
+      max-file-size: 10485760
+      max-request-size: 10485760
+
+  redis:
+    database: 1
+    host: 123.249.2.135
+    port: 6379
+    password: 123456
+    timeout: 3000
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 暴露的端点
+        include: '*'
+  endpoint:
+    #开启shutdown
+    shutdown:
+      enabled: true
+  server:
+    port: 5555
+
+# info 配置项
+info:
+  app:
+    java:
+      source: @java.version@
+      target: @java.version@
+    encoding: UTF-8
+    version: @project.version@
+
+
+logging:
+  level:
+    root: info
+    cn.chendahai: debug
+
